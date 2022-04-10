@@ -21,18 +21,35 @@
             <!-- column for the city entry -->
             <div class="card col-3 p-2 border-primary" style="width: 25rem;">
                 <p class="fs-3 fw-bold">Search for any city:</p>
-                <input id="city" class="border-primary" type="text" placeholder=" Enter a city for forcast"
+                <input id="city-input" class="border-primary" type="text" placeholder=" Enter a city for forcast"
                     aria-label="Enter a city for forcast">
                 <div class="card-body">
                     <p class="card-text"> Enter a city to get the 5-day forecast and also the current temperature,
                         wind speed, humidity, and UV index.</p>
-                    <a href="#" class="btn btn-primary btn-lg">Search</a>
+                    <a id="search-button" href="#" class="btn btn-primary btn-lg">Search</a>
                 </div>
-                <div class="row col-9" id="current-weather"></div>
+
             </div>
 
         </div>
-
+        <div class="row col-9">
+            <div class="row">
+                <div class="card d-none" id="current-weather">
+                    <div class="card-body">
+                        <h-3 id="city-given" class="align-middle"></h-3>
+                        <img id="weather-icon" alt="">
+                        <p id="temp"></p>
+                        <p id="humidity"></p>
+                        <p id="wind"></p>
+                        <p id="uv-index"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
+            <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
+            <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
+            <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
+            <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
         </div>
     </main>
     <script src="./assets/js/script.js"></script>
