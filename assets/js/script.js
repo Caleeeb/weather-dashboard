@@ -59,11 +59,10 @@ function createWeather(cityName) {
                         // testing output
                         response.json().then(function (result) {
                             allWeatherData = result;
-                            // console.log(JSON.stringify(allWeatherData));
                             uvi = result.current.uvi;
                             let uviEl = document.createElement("span");
 
-                            // uv index color changing
+                            // add a color attribute that matches the severity of UV index
                             if (uvi < 4) {
                                 uviEl.setAttribute("class", "badge bg-success");
                             }
@@ -77,8 +76,6 @@ function createWeather(cityName) {
                             uviEl.innerHTML = uvi;
                             uvIndexEl.innerHTML = "UV Index: ";
                             uvIndexEl.append(uviEl);
-                            // console.log(JSON.stringify(result));
-                            // console.log(uvi);
                             fiveDay(cityName);
                         })
                     });
@@ -91,6 +88,7 @@ function fiveDay(cityname) {
     const fiveDayEl = document.querySelectorAll(".five-day");
     for (i = 0; i < fiveDayEl.length; i++) {
 
+        // setting dates for for the five day cards
         fiveDayEl[i].innerHTML = "";
         console.log(JSON.stringify(allWeatherData));
         const fiveDayDate = new Date(allWeatherData.daily[i].dt * 1000);
@@ -98,9 +96,24 @@ function fiveDay(cityname) {
         const fiveDayMonth = fiveDayDate.getMonth() + 1;
         const fiveDayYear = fiveDayDate.getFullYear();
         const fiveDayDateEl = document.createElement("p");
-        fiveDayDateEl.setAttribute("class", "date");
+        fiveDayDateEl.setAttribute("class", "date mt-3 mb1");
         fiveDayDateEl.innerHTML = fiveDayMonth + "/" + fiveDayDay + "/" + fiveDayYear;
         fiveDayEl[i].append(fiveDayDateEl);
+
+        // setting the icon for the five day cards
+        const fiveDayIconEl = document.createElement("img");
+        fiveDayIconEl.setAttribute("src", `https://openweathermap.org/img/wn/${allWeatherData.daily[i].weather[0].icon}@2x.png`);
+        fiveDayIconEl.setAttribute("alt", allWeatherData.daily[i].weather[0].description);
+        fiveDayEl[i].append(fiveDayIconEl);
+        // setting the temperature for the five day cards
+        const fiveDayTempEl = document.createElement("p");
+        fiveDayTempEl.innerHTML = "High: " + allWeatherData.daily[i].temp.day + " &#8457";
+        console.log(allWeatherData.daily[i].temp.day);
+        fiveDayEl[i].append(fiveDayTempEl);
+        // setting the humidity for the five day cards
+        const fiveDayHumidityEl = document.createElement("p");
+        fiveDayHumidityEl.innerHTML = "Humidity: " + allWeatherData.daily[i].humidity + "%";
+        fiveDayEl[i].append(fiveDayHumidityEl);
     }
 
 }
@@ -117,10 +130,8 @@ searchEl.addEventListener("click", function () {
 
 // remove any previous data that might have been displayed
 
-// temperature
-// humidity
-// wind speed
-// uv index. I'll need to add a color attribute that matches the severity of UV index (maybe use 'if' statement?)
+
+
 
 
 // fetch the five day forecast data
