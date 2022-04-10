@@ -16,7 +16,7 @@
     <header class="container-fluid text-center text-white bg-primary h-100 p-2">
         <h1> Weather Dashboard </h1>
     </header>
-    <main class="container-fluid bg-light">
+    <main class="container-fluid d-flex flex-wrap bg-light">
         <div class="container-fluid row p-2">
             <!-- column for the city entry -->
             <div class="card col-3 p-2 border-primary" style="width: 25rem;">
@@ -28,19 +28,17 @@
                         wind speed, humidity, and UV index.</p>
                     <a id="search-button" href="#" class="btn btn-primary btn-lg">Search</a>
                 </div>
-
             </div>
-
         </div>
-        <div class="row col-9">
+        <div class="col-6">
             <div class="row">
                 <div class="card d-none" id="current-weather">
                     <div class="card-body">
-                        <h-3 id="city-given" class="align-middle"></h-3>
+                        <h-3 id="city-given" class="font-weight-bold"></h-3>
                         <img id="weather-icon" alt="">
                         <p id="temp"></p>
                         <p id="humidity"></p>
-                        <p id="wind"></p>
+                        <p id="wind-speed"></p>
                         <p id="uv-index"></p>
                     </div>
                 </div>
