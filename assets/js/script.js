@@ -1,5 +1,9 @@
 // WEATHER DASHBOARD
 // variables setup
+let weatherData = {};
+let allWeatherData = {};
+let uvi = "";
+
 // dom selector variables
 let cityEl = document.getElementById("city-input");
 let searchEl = document.getElementById("search-button");
@@ -10,7 +14,6 @@ let humidityEl = document.getElementById("humidity");
 let windSpeedEl = document.getElementById("wind-speed");
 let uvIndexEl = document.getElementById("uv-index");
 let currentWeatherEl = document.getElementById("current-weather");
-let weatherData = {};
 
 
 
@@ -31,7 +34,6 @@ function createWeather(cityName) {
             response.json().then(function (result) {
                 weatherData = result;
                 currentWeatherEl.classList.remove("d-none");
-                console.log(JSON.stringify(result));
                 // date variables
                 const currentDate = new Date(weatherData.dt * 1000);
                 const day = currentDate.getDate();
@@ -56,7 +58,9 @@ function createWeather(cityName) {
                     .then(function (response) {
                         // testing output
                         response.json().then(function (result) {
-                            let uvi = weatherData.current.uvi;
+                            allWeatherData = result;
+                            // console.log(JSON.stringify(allWeatherData));
+                            uvi = result.current.uvi;
                             let uviEl = document.createElement("span");
 
                             // uv index color changing
@@ -73,26 +77,40 @@ function createWeather(cityName) {
                             uviEl.innerHTML = uvi;
                             uvIndexEl.innerHTML = "UV Index: ";
                             uvIndexEl.append(uviEl);
-                            console.log(JSON.stringify(result));
-                            console.log(uvi);
+                            // console.log(JSON.stringify(result));
+                            // console.log(uvi);
+                            fiveDay(cityName);
                         })
                     });
-
-
-
-
-
-
-
-
             });
         });
 }
+
+// function for five day forecast
+function fiveDay(cityname) {
+    const fiveDayEl = document.querySelectorAll(".five-day");
+    for (i = 0; i < fiveDayEl.length; i++) {
+
+        fiveDayEl[i].innerHTML = "";
+        console.log(JSON.stringify(allWeatherData));
+        const fiveDayDate = new Date(allWeatherData.daily[i].dt * 1000);
+        const fiveDayDay = fiveDayDate.getDate();
+        const fiveDayMonth = fiveDayDate.getMonth() + 1;
+        const fiveDayYear = fiveDayDate.getFullYear();
+        const fiveDayDateEl = document.createElement("p");
+        fiveDayDateEl.setAttribute("class", "date");
+        fiveDayDateEl.innerHTML = fiveDayMonth + "/" + fiveDayDay + "/" + fiveDayYear;
+        fiveDayEl[i].append(fiveDayDateEl);
+    }
+
+}
+
 // function to retrieve city name on button click.
 searchEl.addEventListener("click", function () {
     const searchInput = cityEl.value;
 
     createWeather(searchInput);
+    // fiveDay(searchInput);
 });
 
 
