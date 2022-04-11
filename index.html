@@ -19,7 +19,7 @@
     <main class="container-fluid bg-light">
         <div class="row">
             <!-- column for the city entry -->
-            <div class="m-2 card col-lg-3 border-primary" style="width: 25rem;">
+            <div class="m-2 card col-lg-3" style="width: 25rem;">
                 <p class="fs-3 fw-bold">Search for any city:</p>
                 <input id="city-input" class="border-primary" type="text" placeholder=" Enter a city for forcast"
                     aria-label="Enter a city for forcast">
@@ -28,29 +28,38 @@
                         wind speed, humidity, and UV index.</p>
                     <a id="search-button" href="#" class="btn btn-primary btn-lg">Search</a>
                 </div>
+                <div class="d-flex flex-column">
+                    <form id="history"></form>
+                    <button class="btn btn-primary m-2 d-none" type="button" id="clear-history">Clear
+                        history</button>
+                </div>
             </div>
             <div class="col-lg-8">
-                <div class="row mr-0">
-                    <div class="col-lg-11 m-2 card d-none" id="current-weather">
-                        <div class="card-body">
-                            <h-3 id="city-given" class="font-weight-bold"></h-3>
-                            <img id="weather-icon" alt="">
-                            <p id="temp"></p>
-                            <p id="humidity"></p>
-                            <p id="wind-speed"></p>
-                            <p id="uv-index"></p>
+                <div class="col-12">
+                    <div class="row mr-0">
+                        <div class="col-12 m-2 card d-none" id="current-weather">
+                            <div class="card-body">
+                                <h3 id="city-given" class="fw-bold"></h3>
+                                <img id="weather-icon" alt="">
+                                <p id="temp"></p>
+                                <p id="humidity"></p>
+                                <p id="wind-speed"></p>
+                                <p id="uv-index"></p>
+                            </div>
+                        </div>
+                        <div class="row d-none" id="five-day-header">
+                            <div class="col-12">
+                                <h3 class="col-12 font-weight-bold bg-white border p-3">5-Day Forecast</h3>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
+                                <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
+                                <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
+                                <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
+                                <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
+                            </div>
                         </div>
                     </div>
-                </div class="row d-none" id="five-day-header">
-                <div class="col-12">
-                    <h3 class="font-weight-bold">5-Day Forecast</h3>
-                </div>
-                <div class="row">
-                    <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
-                    <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
-                    <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
-                    <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
-                    <div class="col-md-2 five-day bg-primary text-white m-2 rounded"></div>
                 </div>
             </div>
         </div>
